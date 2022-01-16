@@ -41,11 +41,11 @@ newElement();
 
 
 // Add class 'active' to section when near top of viewport
-var actives = navbar.getElementsByClassName("menu__link");
+const actives = navbar.querySelectorAll(".menu__link");
 
-for (var i = 0; i < actives.length; i++) {
+for (let i = 0; i < actives.length; i++) {
     actives[i].addEventListener("click", function() {
-      var hozirgi = document.getElementsByClassName("active");
+      let hozirgi = document.getElementsByClassName("active");
   
       if (hozirgi.length > 0) {
         hozirgi[0].className = hozirgi[0].className.replace(" active", "");
@@ -59,10 +59,6 @@ for (var i = 0; i < actives.length; i++) {
 
 
 
-
-// Scroll to anchor ID using scrollTO event
-
-
  
 
 /**
@@ -71,7 +67,6 @@ for (var i = 0; i < actives.length; i++) {
  * 
 */
 
-// Build menu 
 
 // Scroll to section on link click
 document.addEventListener("scroll", () => {
@@ -92,6 +87,25 @@ document.addEventListener("scroll", () => {
 });
 
 // Scroll to section on link click
+const links = document.querySelectorAll(".navbar__menu ul li a");
+
+for (const link of links) {
+  link.addEventListener("click", clickHandler);
+}
+
+function clickHandler(e) {
+  e.preventDefault();
+  const href = this.getAttribute("href");
+  const offsetTop = document.querySelector(href).offsetTop;
+
+  scroll({
+    top: offsetTop,
+    behavior: "smooth"
+  });
+}
+
+
+
 
 
 
